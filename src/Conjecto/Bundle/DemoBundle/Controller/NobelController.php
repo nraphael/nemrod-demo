@@ -8,7 +8,7 @@ use Conjecto\Nemrod\Resource;
 use EasyRdf\Graph;
 use EasyRdf\Literal\Integer;
 use EasyRdf\RdfNamespace;
-use Elastica\Filter\Bool;
+// use Elastica\Filter\Bool;
 use Elastica\Filter\Nested;
 use Elastica\Filter\Prefix;
 use Elastica\Filter\Term;
@@ -36,13 +36,13 @@ class NobelController extends Controller
         $repository = $manager->getRepository('terms:LaureateAward');
 
         //getting years by querying directly the triplet store
-        $years = $repository->getQueryBuilder()
+        $query = $repository->getQueryBuilder()
             ->select("DISTINCT ?year")
             ->where('?s terms:year ?year')
             ->addFilter('?year > 0')
             ->OrderBy('?year')
-            ->getQuery()
-            ->execute();
+            ->getQuery();
+        $years = $query->execute();
 
         //getting all categories
         $categories = $manager->getRepository('terms:Category')->findAll();

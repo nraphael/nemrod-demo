@@ -56,7 +56,7 @@ nemrod:
     dbpprop: "http://dbpedia.org/property/"
     dbpedia: "http://dbpedia.org/resource/"
     dbpediaowl: "http://dbpedia.org/ontology/"
-    dcterms: http://purl.org/dc/terms/
+    dcterms: "http://purl.org/dc/terms/"
 
 elastica:
   clients:
