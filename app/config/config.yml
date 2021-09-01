@@ -57,6 +57,8 @@ nemrod:
     dbpedia: "http://dbpedia.org/resource/"
     dbpediaowl: "http://dbpedia.org/ontology/"
     dcterms: "http://purl.org/dc/terms/"
+    hbsko: "https://librarydata.hbs.edu/HBSKOntology/"
+    skos: "http://www.w3.org/2004/02/skos/core#"
 
 elastica:
   clients:
@@ -79,3 +81,6 @@ elastica:
         award:
           type: "terms:LaureateAward"
           frame: "@Demo/LaureateAward/laureateaward-es.jsonld"
+        person:
+          type: "hbsko:Person"
+          frame: "@Demo/Person/person.jsonld"

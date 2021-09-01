@@ -1,0 +1,20 @@
+{#{% extends "DemoBundle::base.html.twig" %}#}
+{% extends "DemoBundle::base.html.twig" %}
+
+
+{% form_theme form ':Form:fields.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <h1>View Alumni Profile</h1>
+
+        {{ form_start(form, {attr: {class: 'form-horizontal'}}) }}
+        {% for child in form.children%}
+            {{ form_row(child) }}
+        {% endfor %}
+
+        {{ form_end(form) }}
+
+    </div>
+{% endblock %}

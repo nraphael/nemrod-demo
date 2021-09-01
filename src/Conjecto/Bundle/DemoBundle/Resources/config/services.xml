@@ -12,6 +12,9 @@
         <service id="demo.award_form" class="Conjecto\Bundle\DemoBundle\Form\LaureateType">
             <tag name="form.type" alias="resource_laureate" />
         </service>
+        <service id="demo.alumni_profile_form" class="Conjecto\Bundle\DemoBundle\Form\AlumniProfileType">
+            <tag name="form.type" alias="alumni_profile" />
+        </service>
     </services>
 
 </container>

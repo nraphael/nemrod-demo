@@ -188,4 +188,38 @@ class NobelController extends Controller
 
         return $this->redirect($this->generateUrl('laureate.index'));
     }
+
+    /**
+     * @Route("/nick/{uri}", name="nick.view", requirements={"uri" = ".+"})
+     * @Template("DemoBundle:Nobel:alumni.html.twig")
+     */
+    public function nickAction(Request $request, $uri)
+    {
+        $alumniProfile = $this->container->get('rm')->getRepository('hbsko:Person')->find($uri);
+        $form = $this->createForm('alumni_profile', $alumniProfile);
+//        if($request->query->get('json')) {
+//            $serializer = $this->get('nemrod.jsonld.serializer');
+//            return new JsonResponse(json_decode($serializer->serialize($alumniProfile)));
+//        }
+        return array(
+            "form" => $form->createView(),
+            'profile' => $alumniProfile
+        );
+
+    }
+
+    /**
+     * @Route("/nick2/{uri}", name="nick2.view", requirements={"uri" = ".+"})
+     * @Template("DemoBundle:Nobel:alumni.html.twig")
+     * @ParamConverter("alumniProfile", class="hbsko:Person")
+     */
+    public function nick2Action($alumniProfile, Request $request)
+    {
+        if($request->query->get('json')) {
+            $serializer = $this->get('nemrod.jsonld.serializer');
+            return new JsonResponse(json_decode($serializer->serialize($alumniProfile)));
+        }
+        return array( "profile" => $alumniProfile );
+
+    }
 }
