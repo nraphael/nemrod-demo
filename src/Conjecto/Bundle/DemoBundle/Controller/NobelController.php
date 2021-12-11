@@ -89,7 +89,8 @@ class NobelController extends Controller
             ->getQuery()
             ->execute();
 
-        $num = current($laureates)['count'];
+        $tmp = current($laureates);
+        $num = $tmp['count'];
         $repository = $manager->getRepository('terms:LaureateAward');
 
         //getting laureates
@@ -189,9 +190,13 @@ class NobelController extends Controller
         return $this->redirect($this->generateUrl('laureate.index'));
     }
 
+
     /**
      * @Route("/nick/{uri}", name="nick.view", requirements={"uri" = ".+"})
      * @Template("DemoBundle:Nobel:alumni.html.twig")
+     *
+     * Must be called like so: http://10.0.0.22:8000/nick/https://librarydata.hbs.edu/HBSKOntology/Person/alum%234011
+     * where naturally %23 replaces the hashtag
      */
     public function nickAction(Request $request, $uri)
     {
